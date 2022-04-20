@@ -1,0 +1,13 @@
+<?php
+class consultas_sql
+{
+	
+	function llenar_combo()
+	{
+		$sql = "SELECT * FROM torneos";
+		$datos = consultar_fuente($datos);
+		return $datos;
+	}
+
+}
+?>
