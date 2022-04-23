@@ -5,7 +5,7 @@ class dt_estadios extends toba_datos_tabla
 	{
 		$where = array();
 		if(isset($filtro['es_desc'])) {
-			$where[] = "es_desc ILIKE ".quote("%{$filtro['es_desc']}%");
+			$where[] = "es_desc ILIKE ".quote("%{$filtro['es_desc']['valor']}%");
 		}
 		$sql = "SELECT
 			e.es_desc,
