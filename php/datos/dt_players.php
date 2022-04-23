@@ -7,7 +7,7 @@ class dt_players extends toba_datos_tabla
 	{
 		$where = array();
 		if(isset($filtro['pl_apno'])) {
-			$where[] = "pl_apno ILIKE ".quote("%{$filtro['pl_apno']}%");
+			$where[] = "pl_apno ILIKE ".quote("%{$filtro['pl_apno']['valor']}%");
 		}
 		$sql = "SELECT
 			p.pl_apno,
@@ -23,5 +23,7 @@ class dt_players extends toba_datos_tabla
 
 
 }
-
+
+
+
 ?>
