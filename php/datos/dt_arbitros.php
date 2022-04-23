@@ -5,9 +5,11 @@ class dt_arbitros extends toba_datos_tabla
 {
 	function get_listado($filtro=array())
 	{
+		
 		$where = array();
 		if(isset($filtro['ar_apno'])) {
-			$where[] = "ar_apno ILIKE ".quote("%{$filtro['ar_apno']}%");
+			$where[] = "ar_apno ILIKE ".quote("%{$filtro['ar_apno']['valor']}%");
+		
 		}
 		$sql = "SELECT
 			a.ar_apno,
@@ -23,5 +25,7 @@ class dt_arbitros extends toba_datos_tabla
 
 
 }
-
+
+
+
 ?>
