@@ -5,7 +5,7 @@ class ci_rivales extends toba_ci
 
 	//---- Filtro -----------------------------------------------------------------------
 
-	function conf__filtro(toba_ei_formulario $filtro)
+	function conf__filtro(toba_ei_filtro $filtro)
 	{
 		if(isset($this->s__datos_filtro)){
 			$filtro->set_datos($this->s__datos_filtro);
@@ -27,55 +27,55 @@ class ci_rivales extends toba_ci
 	function conf__cuadro(toba_ei_cuadro $cuadro)
 	{
 		if(isset($this->s__datos_filtro)){
-			$cuadro->set_datos($this->dep('datos')->get_listado($this->s__datos_filtro));
+			$cuadro->set_datos($this->dep('dt_rivales')->get_listado($this->s__datos_filtro));
 		} else {
-			$cuadro->set_datos($this->dep('datos')->get_listado());
+			$cuadro->set_datos($this->dep('dt_rivales')->get_listado());
 		}
 	}
 
 	function evt__cuadro__seleccion($datos)
 	{
-		$this->dep('datos')->cargar($datos);
+		$this->dep('dt_rivales')->cargar($datos);
 	}
 
 	//---- Formulario -------------------------------------------------------------------
 
-	function conf__formulario(toba_ei_formulario $form)
+	function conf__form(toba_ei_formulario $form)
 	{
-		if($this->dep('datos')->esta_cargada()){
-			$form->set_datos($this->dep('datos')->get());
+		if($this->dep('dt_rivales')->esta_cargada()){
+			$form->set_datos($this->dep('dt_rivales')->get());
 		}
 	}
 
-	function evt__formulario__alta($datos)
+	function evt__form__alta($datos)
 	{
-		$this->dep('datos')->set($datos);
-		$this->dep('datos')->sincronizar();
+		$this->dep('dt_rivales')->set($datos);
+		$this->dep('dt_rivales')->sincronizar();
 		$this->resetear();
 	}
 
-	function evt__formulario__modificacion($datos)
+	function evt__form__modificacion($datos)
 	{
-		$this->dep('datos')->set($datos);
-		$this->dep('datos')->sincronizar();
+		$this->dep('dt_rivales')->set($datos);
+		$this->dep('dt_rivales')->sincronizar();
 		$this->resetear();
 	}
 
-	function evt__formulario__baja()
+	function evt__form__baja()
 	{
-		$this->dep('datos')->eliminar_filas();
-		$this->dep('datos')->sincronizar();
+		$this->dep('dt_rivales')->eliminar_filas();
+		$this->dep('dt_rivales')->sincronizar();
 		$this->resetear();
 	}
 
-	function evt__formulario__cancelar()
+	function evt__form__cancelar()
 	{
 		$this->resetear();
 	}
 
 	function resetear()
 	{
-		$this->dep('datos')->resetear();
+		$this->dep('dt_rivales')->resetear();
 	}
 }
 
