@@ -5,6 +5,7 @@ class cargar extends toba_ci
 	protected $s__total_goles;
 	protected $s__filas_cargadas;
 	
+	
 	//-----------------------------------------------------------------------------------
 	//---- Configuraciones --------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -13,6 +14,8 @@ class cargar extends toba_ci
 	{
 		$hay_cambios = $this->dep('estadisticas')->hay_cambios();
         toba::menu()->set_modo_confirmacion('Esta a punto de abandonar la edición sin grabar, ¿Desea continuar?', $hay_cambios);
+
+        
 	}
 
 	//-----------------------------------------------------------------------------------
@@ -27,7 +30,8 @@ class cargar extends toba_ci
 			$this->dep('estadisticas')->resetear();
 			$this->dep('goles')->resetear();
 			unset($this->s__fecha);
-			$this->set_pantalla(pant_inicial);
+			$this->set_pantalla('pant_inicial');
+			//$this->conf__pant_inicial(toba_ei_pantalla $pantalla);
 		}
 		else {
 			toba::notificacion()->warning('Verificar la cantidad de goles cargados');
