@@ -58,7 +58,7 @@ class ci_modificar_partidos extends toba_ci
 	
 	function evt__cuadro__seleccion($seleccion)
 	{
-	
+		$fecha = date("F j, Y, g:i a");
 		$this->dep('estadisticas')->cargar($seleccion);
 		toba::memoria()->set_dato_operacion($fecha, $seleccion['fecha']);
 		$this->set_pantalla('pant_segunda');
@@ -129,6 +129,7 @@ class ci_modificar_partidos extends toba_ci
 	function conf__form_ml(toba_ei_formulario_ml $form_ml)
 	{
 	
+		$fecha = date("F j, Y, g:i a");
 		$fecha = toba::memoria()->get_dato_operacion($fecha);
 		//ei_arbol($fecha);
 		if (isset($fecha)) {
@@ -212,6 +213,7 @@ class ci_modificar_partidos extends toba_ci
 	
 		if ($this->dep('estadisticas')->esta_cargada()) {
 		
+			$fecha = date("F j, Y, g:i a");
 			$fecha = toba::memoria()->get_dato_operacion($fecha);
 			$where = "WHERE fecha = '$fecha'";
 		

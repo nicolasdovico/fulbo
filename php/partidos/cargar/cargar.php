@@ -31,7 +31,6 @@ class cargar extends toba_ci
 			$this->dep('goles')->resetear();
 			unset($this->s__fecha);
 			$this->set_pantalla('pant_inicial');
-			//$this->conf__pant_inicial(toba_ei_pantalla $pantalla);
 		}
 		else {
 			toba::notificacion()->warning('Verificar la cantidad de goles cargados');
