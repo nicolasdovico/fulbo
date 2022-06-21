@@ -21,7 +21,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Varios criterios - cuadro', --nombre
-	NULL, --titulo
+	'Resultados encontrados', --titulo
 	'0', --colapsable
 	NULL, --descripcion
 	NULL, --fuente_datos_proyecto
@@ -56,8 +56,8 @@ INSERT INTO apex_objeto_cuadro (objeto_cuadro_proyecto, objeto_cuadro, titulo, s
 	NULL, --archivos_callbacks
 	'100%', --ancho
 	'1', --ordenar
-	'0', --paginar
-	NULL, --tamano_pagina
+	'1', --paginar
+	'15', --tamano_pagina
 	'P', --tipo_paginado
 	'1', --mostrar_total_registros
 	'0', --eof_invisible

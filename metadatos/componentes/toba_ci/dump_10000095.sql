@@ -120,11 +120,11 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	'10000095', --objeto_ci
 	'10000034', --pantalla
 	'pant_inicial', --identificador
-	NULL, --orden
+	'1', --orden
 	'Pantalla Inicial', --etiqueta
 	NULL, --descripcion
 	NULL, --tip
-	NULL, --imagen_recurso_origen
+	'apex', --imagen_recurso_origen
 	NULL, --imagen
 	NULL, --objetos
 	NULL, --eventos
@@ -132,7 +132,7 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	NULL, --subclase_archivo
 	NULL, --template
 	NULL, --template_impresion
-	NULL  --punto_montaje
+	'10000001'  --punto_montaje
 );
 --- FIN Grupo de desarrollo 10
 
@@ -143,20 +143,20 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'fulbo', --proyecto
 	'10000034', --pantalla
 	'10000095', --objeto_ci
-	'0', --orden
+	'1', --orden
 	'10000105'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'fulbo', --proyecto
 	'10000034', --pantalla
 	'10000095', --objeto_ci
-	'1', --orden
+	'2', --orden
 	'10000106'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'fulbo', --proyecto
 	'10000034', --pantalla
 	'10000095', --objeto_ci
-	'2', --orden
+	'0', --orden
 	'10000107'  --dep_id
 );

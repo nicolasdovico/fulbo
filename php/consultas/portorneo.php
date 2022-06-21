@@ -61,7 +61,7 @@ class portorneo extends toba_ci
 	
 		$this->pantalla()->tab('seg_pantalla')->ocultar();
 		
-		
+		$var = 0;
 		$xxx = toba::memoria()->get_dato_operacion('filtro',$var);
 		//echo ('$xxx');
 		//echo ($xxx);
@@ -105,7 +105,7 @@ class portorneo extends toba_ci
 
 	function evt__formxtorneo__filtrar($datos)
 	{
-		 $var = $datos[torneo];
+		 $var = $datos['torneo'];
 		 //echo('$var=');
 		 //echo($var);
 		 toba::memoria()->set_dato_operacion('filtro',$var);
@@ -117,12 +117,13 @@ class portorneo extends toba_ci
 	
 	function conf__formxtorneo($componente)
 	{
+		$var = 0;
 		$buscar = toba::memoria()->get_dato_operacion('filtro',$var);
 		if(isset($buscar)){
 			//echo ('esta seteado el filtro');
 			$sql = "SELECT * FROM torneos  WHERE tor_id  = '$buscar'";
 			$consulta = toba::db()->consultar($sql);
-			$datos = array('buscado' => $consulta[0][tor_desc]);
+			$datos = array('buscado' => $consulta[0]['tor_desc']);
 			$componente->set_datos($datos);
 		}		
 	}
