@@ -215,7 +215,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'--SELECCIONE--', --carga_no_seteado
 	'0', --carga_no_seteado_ocultar
 	NULL, --carga_maestros
-	NULL, --edit_tamano
+	'250', --edit_tamano
 	NULL, --edit_maximo
 	NULL, --edit_mascara
 	NULL, --edit_unidad
@@ -331,7 +331,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'--SELECCIONE--', --carga_no_seteado
 	'0', --carga_no_seteado_ocultar
 	NULL, --carga_maestros
-	NULL, --edit_tamano
+	'250', --edit_tamano
 	NULL, --edit_maximo
 	NULL, --edit_mascara
 	NULL, --edit_unidad
@@ -389,7 +389,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'--SELECCIONE--', --carga_no_seteado
 	'0', --carga_no_seteado_ocultar
 	NULL, --carga_maestros
-	NULL, --edit_tamano
+	'250', --edit_tamano
 	NULL, --edit_maximo
 	NULL, --edit_mascara
 	NULL, --edit_unidad
@@ -447,7 +447,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'--SELECCIONE--', --carga_no_seteado
 	'0', --carga_no_seteado_ocultar
 	NULL, --carga_maestros
-	NULL, --edit_tamano
+	'250', --edit_tamano
 	NULL, --edit_maximo
 	NULL, --edit_mascara
 	NULL, --edit_unidad
