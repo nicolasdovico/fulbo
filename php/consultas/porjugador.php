@@ -51,12 +51,12 @@
 
 		
 		$datos = consultar_fuente($sql);
-//		ei_arbol($datos);
+		//ei_arbol($datos);
 		$i = 0;
 		foreach ($datos as $valor) {
-			$desc_rival = $this->get_desc_rival($valor[adversario], $nombre);
-			$valor[adversario] = $nombre;
-			$datos[$i][adversario] = $nombre;
+			$desc_rival = $this->get_desc_rival($valor['adversario'], $nombre);
+			$valor['adversario'] = $nombre;
+			$datos[$i]['adversario'] = $nombre;
 			$i = $i +1;
 		}
 		$cuadro->set_datos($datos);
@@ -68,12 +68,12 @@
 
 		
 		$datos = consultar_fuente($sql);
-//		ei_arbol($datos);
+		//ei_arbol($datos);
 		$i = 0;
 		foreach ($datos as $valor) {
-			$desc_rival = $this->get_desc_rival($valor[adversario], $nombre);
-			$valor[adversario] = $nombre;
-			$datos[$i][adversario] = $nombre;
+			$desc_rival = $this->get_desc_rival($valor['adversario'], $nombre);
+			$valor['adversario'] = $nombre;
+			$datos[$i]['adversario'] = $nombre;
 			$i = $i +1;
 		}
 		$cuadro->set_datos($datos);
@@ -88,7 +88,7 @@
 	{
 		$sql = "SELECT ri_desc FROM rivales WHERE ri_id = $resul";
 		$resul = consultar_fuente($sql);
-		$nombre = $resul[0][ri_desc];
+		$nombre = $resul[0]['ri_desc'];
 		return $resul;
 	}
 		
