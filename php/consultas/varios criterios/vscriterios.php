@@ -161,6 +161,7 @@ class vscriterios extends toba_ci
       {
 	    $this->s__filtro = $datos;
 		$this->s__filtro['where'] = $this->dep('vscriterios_filtro')->get_sql_where('AND');
+		
 		//$this->s__filtro['where'] = "estadisticas.adversario = rivales.ri_id and estadisticas.torneo = torneos.tor_id and estadisticas.estadio = estadios.es_id and estadisticas.arbitro = arbitros.ar_id and estadisticas.estadio = estadios.es_id and ";
 				//print_r ($this->s__from);
 			//}

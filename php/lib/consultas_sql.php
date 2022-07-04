@@ -91,7 +91,7 @@ class consultas_sql
 		$id = quote($id);
 		$sql = "SELECT 
 					ar_id, 
-					es_apnoc
+					ar_apno
 				FROM 
 					arbitros
 				WHERE
