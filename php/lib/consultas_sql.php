@@ -230,6 +230,43 @@ class consultas_sql
 		";
 		return consultar_fuente($sql);		
 	}
+
+	static function get_fase($id=null)
+	{
+		if (! isset($id)) {
+			return array();
+		}
+		$id = quote($id);
+		$sql = "SELECT 
+					id_fase, 
+					fase_desc
+				FROM 
+					fases
+				WHERE
+					id_fase = $id";
+		$result = consultar_fuente($sql);
+		if (! empty($result)) {
+			return $result[0]['fase_desc'];
+		}
+	}	
+	
+	static function get_fases($filtro=null)
+	{
+		if (! isset($filtro) || trim($filtro) == '') {
+			return array();
+		}
+		$filtro = quote("%{$filtro}%");
+		$sql = "SELECT 
+					id_fase, 
+					fase_desc
+				FROM 
+					fases
+				WHERE
+					fase_desc ILIKE $filtro
+				ORDER BY fase_desc
+		";
+		return consultar_fuente($sql);		
+	}
 	
 	static function get_tipo_gol()
 	{
