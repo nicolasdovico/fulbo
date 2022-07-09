@@ -15,10 +15,10 @@ class portorneo extends toba_ci
 		$racha = false;
 		$total_ganados = -10;
 		foreach($consulta as $clave => $fila){
-			if ($consulta[$clave][go_ri] > $consulta[$clave][go_ad]) {				
+			if ($consulta[$clave]['go_ri'] > $consulta[$clave]['go_ad']) {				
 				if ($racha == false) {
 					$racha = true;
-					$inicio_racha = $consulta[$clave][fecha];
+					$inicio_racha = $consulta[$clave]['fecha'];
 					$ganados = $ganados + 1;
 				}
 				else {
@@ -28,7 +28,7 @@ class portorneo extends toba_ci
 			}
 			else {  //se cortó la racha
 				$racha = false;
-				$final_racha = $consulta[$clave][fecha];
+				$final_racha = $consulta[$clave]['fecha'];
 				if ($ganados >= $total_ganados) {
 					$fechainic_mejor_racha = $inicio_racha;
 					$fechafina_mejor_racha = $final_racha;
@@ -38,9 +38,9 @@ class portorneo extends toba_ci
 			}		
 
 		}
-			$resu[ganados] = $total_ganados;
-			$resu[inicio] = $fechainic_mejor_racha;
-			$resu[fin] = $fechafina_mejor_racha;
+			$resu['ganados'] = $total_ganados;
+			$resu['inicio'] = $fechainic_mejor_racha;
+			$resu['fin'] = $fechafina_mejor_racha;
 			//return $total_ganados;
 			//return $fechainic_mejor_racha;
 			//return $fechafina_mejor_racha;
@@ -183,19 +183,19 @@ class portorneo extends toba_ci
 	{
 		$sql = "SELECT pl_apno FROM players where pl_id = $juga";
 		$consulta = consultar_fuente($sql);
-		$nombre = $consulta[0][pl_apno];
+		$nombre = $consulta[0]['pl_apno'];
 		return $nombre;
 	}
 	
 	function mergear_goles_penales(&$consulta, $consulta2)
 	{
 		foreach($consulta2 as $clave => $fila) {
-			$cod_jugador = $consulta2[$clave][gol_juga];
+			$cod_jugador = $consulta2[$clave]['gol_juga'];
 			//echo($cod_jugador);
 			foreach($consulta as $i => $linea) {
 				//echo ($i);
-				if ($consulta[$i][gol_juga] == $cod_jugador) {
-					$consulta[$i][de_penal] = $consulta2[$clave][penal];
+				if ($consulta[$i]['gol_juga'] == $cod_jugador) {
+					$consulta[$i]['de_penal'] = $consulta2[$clave]['penal'];
 					//echo ('lo mergea');
 				}
 				else {
@@ -208,6 +208,7 @@ class portorneo extends toba_ci
 	
 	function conf__mas_info($componente)
 	{
+		$var = 0;
 		$this->pantalla()->tab('seg_pantalla')->ocultar(); //oculta la pestaña de detalles
 		$filtro = toba::memoria()->get_dato_operacion('filtro',$var);
 		
@@ -216,84 +217,86 @@ class portorneo extends toba_ci
 			$sql = "SELECT tor_desc FROM torneos WHERE tor_id = $filtro";
 			$consulta = consultar_fuente($sql);
 			
-			$datos[torneo] = $consulta[0][tor_desc];
+			$datos['torneo'] = $consulta[0]['tor_desc'];
 			$sql = "SELECT Count(*) FROM estadisticas WHERE torneo = $filtro"; //cuenta partidos jugados
 			$consulta = consultar_fuente($sql);
 			//ei_arbol($consulta);
-			$datos[jugados] = $consulta[0][count];
+			$datos['jugados'] = $consulta[0]['count'];
 			
 			$sql = "SELECT Count(*) FROM estadisticas WHERE torneo = $filtro and go_ri > go_ad"; //cuenta partidos ganados
 			$consulta = consultar_fuente($sql);
 			//ei_arbol($consulta);
-			$datos[ganados] = $consulta[0][count];
+			$datos['ganados'] = $consulta[0]['count'];
 			
 			$sql = "SELECT Count(*) FROM estadisticas WHERE torneo = $filtro and go_ri = go_ad"; //cuenta partidos empatados
 			$consulta = consultar_fuente($sql);
 			//ei_arbol($consulta);
-			$datos[empatados] = $consulta[0][count];
+			$datos['empatados'] = $consulta[0]['count'];
 			
 			$sql = "SELECT Count(*) FROM estadisticas WHERE torneo = $filtro and go_ri < go_ad"; //cuenta partidos perdidos
 			$consulta = consultar_fuente($sql);
 			//ei_arbol($consulta);
-			$datos[perdidos] = $consulta[0][count];
+			$datos['perdidos'] = $consulta[0]['count'];
 			
 			$sql = "SELECT SUM (go_ri) as suma FROM estadisticas WHERE torneo = $filtro"; //cuenta goles a favor
 			$consulta = consultar_fuente($sql);
 			//ei_arbol($consulta);
-			$datos[goles_a_favor] = $consulta[0][suma];
+			$datos['goles_a_favor'] = $consulta[0]['suma'];
 			
 			$sql = "SELECT SUM (go_ad) as suma FROM estadisticas WHERE torneo = $filtro"; //cuenta goles en contra
 			$consulta = consultar_fuente($sql);
 			//ei_arbol($consulta);
-			$datos[goles_en_contra] = $consulta[0][suma];
+			$datos['goles_en_contra'] = $consulta[0]['suma'];
 		}
 		else {
 			//echo ('no esta seteado el filtro');
-			$datos[torneo] = "No se especificó ninguno";
+			$datos['torneo'] = "No se especificó ninguno";
 			$sql = "SELECT Count(*) FROM estadisticas"; //cuenta partidos jugados
 			$consulta = consultar_fuente($sql);
 			//ei_arbol($consulta);
-			$datos[jugados] = $consulta[0][count];
+			$datos['jugados'] = $consulta[0]['count'];
 			
 			$sql = "SELECT Count(*) FROM estadisticas WHERE go_ri > go_ad"; //cuenta partidos ganados
 			$consulta = consultar_fuente($sql);
 			//ei_arbol($consulta);
-			$datos[ganados] = $consulta[0][count];
+			$datos['ganados'] = $consulta[0]['count'];
 			
 			$sql = "SELECT Count(*) FROM estadisticas WHERE go_ri = go_ad"; //cuenta partidos empatados
 			$consulta = consultar_fuente($sql);
 			//ei_arbol($consulta);
-			$datos[empatados] = $consulta[0][count];
+			$datos['empatados'] = $consulta[0]['count'];
 			
 			$sql = "SELECT Count(*) FROM estadisticas WHERE go_ri < go_ad"; //cuenta partidos perdidos
 			$consulta = consultar_fuente($sql);
 			//ei_arbol($consulta);
-			$datos[perdidos] = $consulta[0][count];
+			$datos['perdidos'] = $consulta[0]['count'];
 			
 			$sql = "SELECT SUM (go_ri) as suma FROM estadisticas"; //cuenta goles a favor
 			$consulta = consultar_fuente($sql);
 			//ei_arbol($consulta);
-			$datos[goles_a_favor] = $consulta[0][suma];
+			$datos['goles_a_favor'] = $consulta[0]['suma'];
 			
 			$sql = "SELECT SUM (go_ad) as suma FROM estadisticas"; //cuenta goles en contra
 			$consulta = consultar_fuente($sql);
 			//ei_arbol($consulta);
-			$datos[goles_en_contra] = $consulta[0][suma];
+			$datos['goles_en_contra'] = $consulta[0]['suma'];
 
 			$sql = "SELECT * FROM estadisticas ORDER BY fecha"; //calcula una racha a favor
 			$consulta = consultar_fuente($sql);
+			$resu = array();
 			$resu= $this->buscar_racha_favor($consulta, $resu);
 
-			list($anio, $mes, $dia) = split ('-', $resu[inicio]);
+			list($anio, $mes, $dia) = explode ('-', $resu['inicio']);
+
 			$fecha_conver = "$dia/$mes/$anio";
-			$datos[inic_racha_favor] = $fecha_conver;
+			$datos['inic_racha_favor'] = $fecha_conver;
 
 
-			list($anio, $mes, $dia) = split ('-', $resu[fin]);
+			list($anio, $mes, $dia) = explode ('-', $resu['fin']);
 			$fecha_conver = "$dia/$mes/$anio";
-			$datos[final_racha_favor] = $fecha_conver;
+			$datos['final_racha_favor'] = $fecha_conver;
 
-			$datos[duracion] = $resu[ganados];
+			$datos['duracion'] = $resu['ganados'];
 			
 		}
 	
@@ -303,6 +306,7 @@ class portorneo extends toba_ci
 	
 	function conf__goleadores($componente)
 	{
+		$var = 0;
 		$this->pantalla()->tab('seg_pantalla')->ocultar(); // oculta la pestaña de detalles
 	
 		$filtro = toba::memoria()->get_dato_operacion('filtro',$var);
@@ -313,11 +317,11 @@ class portorneo extends toba_ci
 			//ei_arbol($consulta);
 			
 			foreach($consulta as $clave => $fila) {
-				$datos[$clave][gol_juga] = $consulta[$clave][gol_juga];
+				$datos[$clave]['gol_juga'] = $consulta[$clave]['gol_juga'];
 			
 				//----- llamo a funcion que trae el nombre del jugador 
-				$datos[$clave][a_favor] = $this->averiguar_nombre($datos[$clave][gol_juga], $nombre);
-				$datos[$clave][cant_favor] = $consulta[$clave][cantidad];
+				$datos[$clave]['a_favor'] = $this->averiguar_nombre($datos[$clave]['gol_juga'], $nombre);
+				$datos[$clave]['cant_favor'] = $consulta[$clave]['cantidad'];
 				//$datos[$clave][a_favor_penal] = $consulta[$clave][de_penal];
 			}
 		}
@@ -336,12 +340,15 @@ class portorneo extends toba_ci
 			//ei_arbol($consulta);
 			
 			foreach($consulta as $clave => $fila) {
-				$datos[$clave][gol_juga] = $consulta[$clave][gol_juga];
+				$datos[$clave]['gol_juga'] = $consulta[$clave]['gol_juga'];
 			
 				//----- llamo a funcion que trae el nombre del jugador 
-				$datos[$clave][a_favor] = $this->averiguar_nombre($datos[$clave][gol_juga], $nombre);
-				$datos[$clave][cant_favor] = $consulta[$clave][total];
-				$datos[$clave][a_favor_penal] = $consulta[$clave][de_penal];
+				$datos[$clave]['a_favor'] = $this->averiguar_nombre($datos[$clave]['gol_juga'], $nombre);
+				$datos[$clave]['cant_favor'] = $consulta[$clave]['total'];
+				if(isset($consulta[$clave]['de_penal']))
+				{
+					$datos[$clave]['a_favor_penal'] = $consulta[$clave]['de_penal'];
+				}
 			}
 		}
 			
