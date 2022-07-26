@@ -267,6 +267,43 @@ class consultas_sql
 		";
 		return consultar_fuente($sql);		
 	}
+
+	static function get_tecnico($id=null)
+	{
+		if (! isset($id)) {
+			return array();
+		}
+		$id = quote($id);
+		$sql = "SELECT 
+					id_tecnicos, 
+					tec_ape_nom
+				FROM 
+					tecnicos
+				WHERE
+					id_tecnicos = $id";
+		$result = consultar_fuente($sql);
+		if (! empty($result)) {
+			return $result[0]['tec_ape_nom'];
+		}
+	}	
+	
+	static function get_tecnicos($filtro=null)
+	{
+		if (! isset($filtro) || trim($filtro) == '') {
+			return array();
+		}
+		$filtro = quote("%{$filtro}%");
+		$sql = "SELECT 
+					id_tecnicos, 
+					tec_ape_nom
+				FROM 
+					tecnicos
+				WHERE
+					tec_ape_nom ILIKE $filtro
+				ORDER BY tec_ape_nom
+		";
+		return consultar_fuente($sql);		
+	}
 	
 	static function get_tipo_gol()
 	{

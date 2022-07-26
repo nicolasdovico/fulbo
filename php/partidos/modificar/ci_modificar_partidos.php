@@ -37,7 +37,10 @@ class ci_modificar_partidos extends toba_ci
 					estadio,
 					(SELECT es_desc FROM estadios WHERE es_id = estadio) as estadio,
 					condicion, 
-					(SELECT descripcion FROM condicion WHERE id_condicion = condicion) as condicion
+					(SELECT descripcion FROM condicion WHERE id_condicion = condicion) as condicion,
+					fase,
+					(SELECT fase_desc FROM fases WHERE id_fase = fase) as fase,
+					fecha_nro
 					
 				FROM 
 					estadisticas
@@ -230,7 +233,9 @@ class ci_modificar_partidos extends toba_ci
 					estadio,
 					(SELECT es_desc FROM estadios WHERE es_id = estadio) as estadio,
 					condicion, 
-					(SELECT descripcion FROM condicion WHERE id_condicion = condicion) as condicion
+					(SELECT descripcion FROM condicion WHERE id_condicion = condicion) as condicion, 
+					fase,
+					fecha_nro
 					
 				FROM 
 					estadisticas
