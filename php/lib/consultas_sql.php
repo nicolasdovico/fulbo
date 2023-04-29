@@ -314,5 +314,61 @@ class consultas_sql
 		return consultar_fuente($sql);
 	
 	}
+
+	static function get_jugadores_congolesparariver($filtro=null)
+	{
+		
+		if (isset($filtro)) {
+			
+			$filtro = quote("%{$filtro["pl_apno"]["valor"]}%");
+			$where = " WHERE gol_parariver = 1 AND pl_apno ILIKE $filtro GROUP BY players.pl_apno, goles.gol_juga, players.pl_id ORDER BY total DESC";
+
+		} else {
+
+			$where = " WHERE gol_parariver = 1 GROUP BY players.pl_apno, goles.gol_juga, players.pl_id ORDER BY total DESC";
+		}
+
+		$sql = "SELECT 
+				gol_juga, 
+				players.pl_id,
+				players.pl_apno,
+				COUNT (*) as total 
+				FROM goles 
+				INNER JOIN 
+				players
+				ON goles.gol_juga = players.pl_id  " . $where;
+		
+		return consultar_fuente($sql);
+	}
+
+	static function get_goles_primer_tiempo($gol_juga)
+	{
+
+		if(isset($gol_juga)) {
+			$sql = "SELECT
+						gol_juga,
+						count(*) as total
+					FROM
+						goles
+					where
+						periodo = 1 and gol_parariver = 1 and gol_juga = $gol_juga
+					GROUP BY goles.gol_juga ";
+		} else {
+
+			$sql = "SELECT
+						count(*) as total
+					FROM
+						goles
+					where
+						periodo = 1 and gol_parariver = 1";
+		}
+
+		$resultado = consultar_fuente($sql);
+		
+		
+		return $resultado[0]["total"];
+
+	}
+	
 }
 ?>

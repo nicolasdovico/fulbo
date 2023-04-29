@@ -93,6 +93,7 @@
 		$pp = 0;
 		$gf = 0;
 		$gc = 0;
+		//ei_arbol($vector);
 
 		if (is_countable($vector)) {
 			//ei_arbol($vector);

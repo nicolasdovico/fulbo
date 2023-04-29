@@ -2,7 +2,7 @@
 
 
 
-class consultas
+class consultassssss
 {
 
 	static function get_adversarios($filtro)
