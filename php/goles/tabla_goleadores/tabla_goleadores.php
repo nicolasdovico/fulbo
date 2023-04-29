@@ -58,7 +58,7 @@ class tabla_goleadores extends toba_ci
 			//ei_arbol(consultas_sql::get_goles_primer_tiempo($datos["pl_id"]));
 
 			$resumen['goles_primer_tiempo'] = consultas_sql::get_goles_primer_tiempo($this->s__fecha["pl_id"]);
-
+			
 			$form->set_datos($resumen);
 		}
 	

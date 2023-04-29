@@ -151,7 +151,9 @@ class ci_modificar_partidos extends toba_ci
 						
 					WHERE
 					
-						gol_fecha = '$fecha'";
+						gol_fecha = '$fecha'
+
+					ORDER BY periodo, minutos";
 			$datos = consultar_fuente($sql);
 			//ei_arbol($datos);
 			$form_ml->set_datos($datos);
